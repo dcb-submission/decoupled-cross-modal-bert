@@ -1,8 +1,9 @@
 # Decoupled Cross-Modal BERT
 
 ## README
-For a better user experience, we recommend you to directly use github repository
-github [link](https://github.com/dcb-submission/decoupled-cross-modal-bert)
+For a better user experience, we recommend you to directly use github repository [link](https://github.com/dcb-submission/decoupled-cross-modal-bert)
+
+
 This project is deveopped based on HuggingFace Transformer [link](https://github.com/huggingface/transformers) and SCAN [link](https://github.com/kuanghuei/SCAN)
 
 ## Prerequisite
