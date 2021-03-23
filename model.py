@@ -29,7 +29,7 @@ def compute_loss(scores,margin=0.2):
     eps = 1e-5
     cost_s = cost_s.pow(8).sum(1).add(eps).sqrt().sqrt().sqrt()#.sqrt()#.div(cost_s.size(1)).mul(2)
     cost_im = cost_im.pow(8).sum(0).add(eps).sqrt().sqrt().sqrt()#.sqrt()#.div(cost_im.size(0)).mul(2)
-    return cost_s.sum().div(cost_s.size(0)) + cost_im.sum().div(cost_s.size(0))
+    return cost_s.sum() + cost_im.sum()#.div(cost_s.size(0))
 
 
 def get_non_pad_mask(seq):
@@ -69,6 +69,8 @@ class Encoder(nn.Module):
         vision_feat = self.fc(vision_feat)
         vision_feat = self.encoder.embeddings.LayerNorm(vision_feat)
 
+
+        # extract all word embeddings in the dictionary
         word_ids = torch.arange(30522, dtype=torch.long).cuda()
         word_all = self.encoder.embeddings.word_embeddings(word_ids)
         word_all = self.encoder.embeddings.LayerNorm(word_all)
@@ -78,10 +80,12 @@ class Encoder(nn.Module):
         vision_feat_new = vision_feat
         vision_g = vision_feat_new.sum(1)
 
-
+        # retrieve the relevant word embedding for each bounding box feature through soft attention
         scores = torch.matmul(vision_feat_new,word_all).mul(20)
         scores = F.softmax(scores,2)
         featnew = torch.matmul(scores,word_all.permute(1,0))
+
+        # concatenate the retrieved word embeddings with bounding box features 
         vision_feat = torch.cat([vision_feat_new,featnew],1)
         vision_mask = torch.cat([vision_mask,vision_mask],1)
 
