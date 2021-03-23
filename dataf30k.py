@@ -16,7 +16,7 @@ class PrecompDataset(data.Dataset):
         loc = data_path + '/'
         # Captions
         self.captions = []
-        self.max_seq_length = 24
+        self.max_seq_length = 44
         self.max_vision = 36
         self.imgfold = "data/f30k_precomp/flickr30k_%s_frcnnnew/"%data_split
 
