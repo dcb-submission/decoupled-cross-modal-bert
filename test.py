@@ -52,7 +52,7 @@ def main():
     tb_logger.configure(opt.logger_name, flush_secs=5)
 
 
-    test_loader = dataf30k.get_test_loaders(
+    test_loader = dataf30k.get_test_loader(
         opt.data_name, opt.batch_size, opt.workers, opt)
 
     # Construct the model

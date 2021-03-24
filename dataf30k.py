@@ -105,7 +105,7 @@ def get_loaders(data_name, batch_size, workers, opt):
     return train_loader, val_loader
 
 
-def get_test_loader(split_name, data_name,  batch_size,
+def get_test_loader(data_name,  batch_size,
                     workers, opt):
     dpath = os.path.join(opt.data_path, data_name)
     test_loader = get_precomp_loader(dpath, 'test',  opt,
