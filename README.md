@@ -3,7 +3,6 @@
 ## README
 For a better user experience, we recommend you to directly use [github](https://github.com/dcb-submission/decoupled-cross-modal-bert)
 
-
 This project is deveopped based on [HuggingFace Transformer](https://github.com/huggingface/transformers) and [SCAN](https://github.com/kuanghuei/SCAN)
 
 ## Prerequisite
@@ -42,8 +41,8 @@ move your downloaded pytorch_model.bin file to ./bert fold
 CUDA_VISIBLE_DEVICES=0,1 python train.py --batch_size 256 --num_epochs=70 --lr_update=30 --learning_rate=.00006
 
 ### Testing
-We provide a trained model [link]() on Flickr30K dataset. The model is without pre-training on CC and SBU datasets.
+We provide a trained model [dropbox link](https://www.dropbox.com/s/0hwpmgunluycna6/checkpoint_f30k.pth.tar?dl=0) on Flickr30K dataset. The model is without pre-training on CC and SBU datasets.
 
-CUDA_VISIBLE_DEVICES=0,1 python test.py --resume checkpoint.pth.tar 
+CUDA_VISIBLE_DEVICES=0 python test.py --resume checkpoint_f30k.pth.tar 
 
 
